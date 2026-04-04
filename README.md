@@ -3,7 +3,6 @@
 # NOUR - Smart Knowledge Glasses
 ### Advanced Offline Augmented Reality System
 
-
 ![Status](https://img.shields.io/badge/Status-Prototype_Complete-success?style=for-the-badge&logo=opsgenie)
 ![Hardware](https://img.shields.io/badge/Hardware-ESP32%20|%20Raspberry%20Pi-blue?style=for-the-badge&logo=microchip)
 ![AI](https://img.shields.io/badge/AI-Offline_Whisper%20|%20NLP-purple?style=for-the-badge&logo=openai)
@@ -28,17 +27,80 @@ Beyond being a prototype, NOUR is positioned as a practical assistive computing 
 
 ---
 
-## 2. The Optical and Acoustic Subsystem (The Headset Mechanism)
+## 2. The "Stealth" Vision: Ultra-Lightweight & Natural Aesthetics
 
-Developing a lightweight headset was critical for achieving widespread usability. The engineering approach rejected standard, cumbersome AR headsets in favor of a decentralized strategy, strictly confining the headset's components to data collection (acoustic input) and data dissemination (optical output).
+A critical factor that differentiates **NOUR** from traditional augmented reality headsets is its absolute unobtrusiveness. The core engineering philosophy is that high-end AI assistance must be integrated without alienating the user socially or attracting unwanted attention. The entire hardware ecosystem is designed around maximum "stealth."
+
+<div align="center">
+  <img src="public/stealth_glasses_2d.png" width="750px" style="border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd;" alt="2D Front Schematic of Stealth Glasses">
+  <br>
+  <i>Figure 1. Orthographic front-profile 2D blueprint of the NOUR glasses. To an external observer, they appear identical to standard modern eyeglasses with zero bulk.</i>
+</div>
+
+### 2.1 An Ultra-Lightweight Titanium Frame
+Developing an ultra-lightweight headset was critical for achieving widespread usability. The engineering approach firmly rejected standard, cumbersome AR headsets. 
+By offloading all processing to the belt, the glasses possess **no heaviness, no bulk, and no oversized visors**. The frame utilizes standard, sleek titanium which ensures the glasses sit perfectly and comfortably on the face, exactly like normal reading glasses. 
+
+<div align="center">
+  <img src="public/glasses_side_profile_2d.png" width="750px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 15px; border: 1px solid #ddd;" alt="2D Side Schematic of Stealth Glasses">
+  <br>
+  <i>Figure 2. Detailed side-profile wireframe indicating the precise placement of the hidden microphone array and Bluetooth module within the sleek temple arm.</i>
+</div>
+
+- **Concealed Electronics**: The slightly thicker temple arm (side piece) is engineered as a discrete, hollow housing.
+- **Micro-Components**: Inside this sleek arm resides an ultra-compact microphone, a tiny micro-battery, and a Bluetooth communication module. There are no protruding lenses or obvious cameras on the outside.
+- **Natural Interaction**: The user interacts with the world effortlessly while capturing audio data entirely covertly.
+
+---
+
+## 3. The Edge Processing Core (The Brain)
+
+By moving the heavy processing (Raspberry Pi, NLP engine, Whisper Model) off the head entirely, the glasses are liberated from physical constraints. The computational node is relocated to a much more discrete location: the user's belt.
+
+### 3.1 The Cigarette-Box Form Factor
+The crux of the NOUR architecture lies in its offloading mechanism. To preserve the ultra-lightweight and natural form factor of the headset, complex tensor computations are outsourced to an independent **Belt Unit**.
+
+- **Extremely Compact Form**: This processing unit is exceptionally compact—**precisely the size of a standard cigarette box**.
+- **Discreet Attachment**: It features a discreet clip mechanism that attaches securely to the user's belt, remaining absolutely unnoticeable beneath clothing. By isolating the processing hardware and heat away from the head, the system achieves maximum comfort while keeping the glasses completely ordinary.
+
+<div align="center">
+  <img src="public/belt_unit_2d.png" width="700px" style="border-radius: 10px; margin-bottom: 10px;" alt="2D Engineering schematic of belt unit">
+  <br>
+  <i>Figure 3. 2D Engineering diagram of the Edge Computing Belt Unit. Designed strictly to the dimensions of a cigarette box, it clips covertly to the user's belt.</i>
+</div>
+
+<div align="center">
+  <img src="public/belt_device.png" width="750px" style="border-radius: 10px; margin-bottom: 10px;" alt="Belt computation device">
+  <br>
+  <i>Figure 4. Cutaway 3D architectural render of the decentralized Edge Computing Belt Unit.</i>
+</div>
+
+### 3.2 Localized Knowledge Inference
+Inside this secure chassis resides the Raspberry Pi micro-computer. Upon booting, it loads a highly compressed, language-specific Whisper neural model into RAM. 
+When raw digital audio is ingested via Bluetooth, the following sequence triggers entirely offline:
+1. **Phonetic Recognition**: The neural network deciphers the Arabic audio morphology and converts it into a structural text string.
+2. **Deterministic Lookup**: The generated text is passed through a deterministic parsing layer, querying a massive local JSON database (containing encyclopedic or scriptural texts).
+3. **Response Assembly**: Upon a successful string match or heuristic approximation, a concise response packet is compiled for transmission.
+
+<div align="center">
+  <img src="public/software_pipeline.png" width="700px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Software NLP processing pipeline flowchart">
+  <br>
+  <i>Figure 5. Sequential software architecture diagram depicting the analog-to-text inference node.</i>
+</div>
+
+---
+
+## 4. The Display and Optical Subsystem
+
+The engineering approach to visual projection strictly confines the headset's components to data collection and data dissemination, without compromising the stealth aesthetic.
 
 <div align="center">
   <img src="public/exploded_view.png" width="750px" style="border-radius: 10px; margin-bottom: 10px;" alt="Exploded view of the optical frame">
   <br>
-  <i>Figure 1. Exploded view illustrating the integration of micro-components within the titanium frame.</i>
+  <i>Figure 6. Exploded view illustrating the integration of micro-components within the titanium frame.</i>
 </div>
 
-### 2.1 Optical Mirroring Mechanism
+### 4.1 Optical Mirroring Mechanism
 The fundamental optical problem—how to project a digital interface into the eye without obstructing the forward view—was resolved using a **Half-Mirror Beamsplitter**. 
 * **The Projector**: A highly luminous **0.96-inch OLED micro-display** is positioned at the top-right apex of the frame, facing downwards.
 * **The Reflector**: A specialized semi-reflective glass substrate is precisely angled at 45 degrees below the OLED module.
@@ -47,34 +109,28 @@ The fundamental optical problem—how to project a digital interface into the ey
 <div align="center">
   <img src="public/optical_diagram.png" width="600px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Light ray geometry diagram">
   <br>
-  <i>Figure 1a. Strict 2D geometrical schematic representing the 45-degree optical reflection vector.</i>
+  <i>Figure 6a. Strict 2D geometrical schematic representing the 45-degree optical reflection vector.</i>
 </div>
 
-### 2.2 The Collimation Imperative — Why a Lens is Required
-
+### 4.2 The Collimation Imperative — Why a Lens is Required
 A critical optical phenomenon must be addressed when projecting imagery from a micro-display at such close proximity to the human eye. The raw photonic output of the OLED panel consists of **diverging wavefronts** — light rays that spread outward from each pixel as a point source. When these uncollimated rays reach the cornea after reflection off the beamsplitter, the ciliary muscles of the eye must contract maximally to increase the refractive power of the crystalline lens. However, at object distances below approximately **10 cm**, the human accommodative system reaches its physiological limit and **cannot converge the diverging rays onto the retina**, resulting in an irrecoverable defocus blur.
 
 <div align="center">
   <img src="public/lens_comparison.png" width="750px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Comparison of optical paths with and without collimating lens">
   <br>
-  <i>Figure 1b. Comparative ray trace analysis: (A) Without collimating optics, diverging wavefronts exceed the accommodative range of the human eye. (B) With a properly positioned convex lens, collimated (parallel) rays enter the pupil, enabling relaxed-state focus at optical infinity.</i>
+  <i>Figure 6b. Comparative ray trace analysis: (A) Without collimating optics, diverging wavefronts exceed the accommodative range of the human eye. (B) With a properly positioned convex lens, collimated (parallel) rays enter the pupil, enabling relaxed-state focus at optical infinity.</i>
 </div>
 
 This phenomenon is governed by the **Thin Lens Equation**, one of the foundational relations of geometric optics:
-
 $$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$$
-
 Where:
 - $f$ = focal length of the collimating lens (meters)
 - $d_o$ = object distance (distance from OLED to the lens)
 - $d_i$ = image distance (distance from lens to the formed image)
 
-#### 2.2.1 The Collimation Condition
-
+#### 4.2.1 The Collimation Condition
 To produce a virtual image at **optical infinity** — a prerequisite for relaxed ocular accommodation — we require $d_i \to \infty$. Substituting this boundary condition into the thin lens equation:
-
 $$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{\infty} = \frac{1}{d_o} + 0$$
-
 $$\boxed{d_o = f}$$
 
 This result establishes a fundamental design constraint: **the OLED display surface must be positioned at exactly the focal plane of the collimating lens**. When this condition is satisfied, every diverging cone of light emitted by a pixel is transformed into a parallel (collimated) beam, simulating an object at infinite distance.
@@ -82,24 +138,17 @@ This result establishes a fundamental design constraint: **the OLED display surf
 <div align="center">
   <img src="public/collimation_optics.png" width="700px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Collimated beam optical path diagram">
   <br>
-  <i>Figure 1c. Complete optical pipeline: OLED positioned at the focal plane emits diverging rays, the convex lens collimates them into parallel beams, the 45° beamsplitter redirects them toward the pupil, and the eye perceives a virtual image at infinity with zero accommodation effort.</i>
+  <i>Figure 6c. Complete optical pipeline: OLED positioned at the focal plane emits diverging rays, the convex lens collimates them into parallel beams, the 45° beamsplitter redirects them toward the pupil, and the eye perceives a virtual image at infinity with zero accommodation effort.</i>
 </div>
 
-### 2.3 Accommodation Theory and the Near-Point Limitation
-
+### 4.3 Accommodation Theory and the Near-Point Limitation
 The human visual system adjusts focus through a mechanism called **accommodation**, where the ciliary muscle modulates the curvature of the crystalline lens. The dioptric power of this system is defined as:
-
 $$D = \frac{1}{f_{\text{eye}}} \quad \text{(in diopters, where } f_{\text{eye}} \text{ is in meters)}$$
 
 For a healthy young adult, the total accommodative range is approximately **10–12 diopters**, corresponding to a **near point** ($d_{\text{np}}$) of roughly:
-
 $$d_{\text{np}} = \frac{1}{D_{\text{max}}} = \frac{1}{10} = 0.1 \text{ m} = 10 \text{ cm}$$
 
-When the OLED is positioned at a distance $d < d_{\text{np}}$ from the eye (typically 2–4 cm in a headset), the required accommodation exceeds the physiological ceiling:
-
-$$D_{\text{required}} = \frac{1}{d_{\text{OLED}}} = \frac{1}{0.03} \approx 33.3 \text{ diopters}$$
-
-This is approximately **3× the maximum** capacity of the human eye. The result is a guaranteed accommodation failure — the image appears as an irreparable blur regardless of the observer's visual acuity. This is the **root cause** of the three observed symptoms:
+When the OLED is positioned at a distance $d < d_{\text{np}}$ from the eye (typically 2–4 cm in a headset), the required accommodation exceeds the physiological ceiling, which is approximately **3× the maximum** capacity of the human eye. The result is a guaranteed accommodation failure — the image appears as an irreparable blur. This is the **root cause** of the three observed symptoms:
 
 | Symptom | Optical Cause | Resolution |
 | :------ | :------------ | :--------- |
@@ -107,66 +156,78 @@ This is approximately **3× the maximum** capacity of the human eye. The result 
 | Eye strain and fatigue | Ciliary muscle sustained at maximum contracture | Relaxed accommodation at virtual infinity |
 | Inability to simultaneously see display and environment | Vergence-accommodation conflict (VAC) | Both display and scene perceived at comparable optical depth |
 
-### 2.4 Lens Selection and Optical Design Parameters
-
+### 4.4 Lens Selection and Optical Design Parameters
 The selection of the collimating lens involves balancing several interdependent parameters:
 
-#### 2.4.1 Required Focal Length
-
-Given the physical constraints of the eyewear frame, the OLED-to-lens distance is bounded by:
-
-$$15 \text{ mm} \leq f \leq 40 \text{ mm}$$
-
+#### 4.4.1 Required Focal Length
+Given the physical constraints of the eyewear frame, the OLED-to-lens distance is bounded by $15 \text{ mm} \leq f \leq 40 \text{ mm}$.
 For the **0.96-inch (24.4 mm diagonal) OLED panel** used in NOUR, a focal length of approximately **25–30 mm** provides an optimal balance between collimation quality and form-factor integration.
 
-#### 2.4.2 Angular Field of View
-
-The resulting angular field of view (FOV) subtended by the display is derived from:
-
-$$\theta_{\text{FOV}} = 2 \cdot \arctan\left(\frac{h}{2f}\right)$$
-
-Where $h$ is the display diagonal dimension. For our parameters:
-
+#### 4.4.2 Angular Field of View
+The resulting angular field of view (FOV) subtended by the display is derived from: $\theta_{\text{FOV}} = 2 \cdot \arctan\left(\frac{h}{2f}\right)$
 $$\theta_{\text{FOV}} = 2 \cdot \arctan\left(\frac{24.4}{2 \times 25}\right) = 2 \cdot \arctan(0.488) \approx 2 \times 26.0° = 52.0°$$
 
-This provides a comfortable field of view well within the central human visual field (~60° for comfortable viewing).
+#### 4.4.3 Magnification
+The effective angular magnification $M$ compared to viewing the bare OLED at the conventional near-point distance (250 mm) is: $M = \frac{d_{\text{ref}}}{f} = \frac{250}{25} = 10\times$
 
-#### 2.4.3 Magnification
-
-The effective angular magnification $M$ compared to viewing the bare OLED at the conventional near-point distance (250 mm) is:
-
-$$M = \frac{d_{\text{ref}}}{f} = \frac{250}{25} = 10\times$$
-
-This significant magnification factor means each pixel of the 128×64 OLED panel is expanded considerably, making character rendering and readability feasible despite the small physical display size.
-
-### 2.5 Experimental Focal Length Calibration Protocol
-
-To empirically determine the optimal OLED-to-lens separation for a given lens specimen, the following calibration protocol was devised:
-
+### 4.5 Experimental Focal Length Calibration Protocol
+To empirically determine the optimal OLED-to-lens separation:
 <div align="center">
   <img src="public/focal_length_calibration.png" width="650px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Focal length calibration procedure">
   <br>
-  <i>Figure 1d. Three-step empirical calibration methodology for determining optimal lens placement distance.</i>
+  <i>Figure 6d. Three-step empirical calibration methodology for determining optimal lens placement distance.</i>
 </div>
 
 **Procedure:**
-
-1. **Orientation**: Mount the OLED display face-up (emitting toward the ceiling) and render a high-contrast test pattern (e.g., sharp text characters, crosshair grid).
-2. **Coarse Sweep**: Position the candidate convex lens above the display surface and gradually increase the separation distance from 10 mm to 50 mm.
-3. **Focus Criterion**: At a viewing distance of approximately **40 cm** above the lens, observe the projected characters. The critical distance $d^*$ at which the characters appear maximally sharp corresponds to the focal length:
-
-$$d^* = f_{\text{lens}} \pm \epsilon$$
-
-Where $\epsilon$ represents the depth-of-focus tolerance (typically $\pm$ 1–2 mm for lenses in this focal range). Once $d^*$ is identified, the lens is permanently fixed at this separation within the frame assembly.
-
-> **Note:** For lenses with marked focal lengths, the experimental verification remains essential, as manufacturing tolerances in low-cost optical elements can introduce deviations of up to $\pm 10\%$ from the specified value.
-
-### 2.6 Isochronous Acoustic Capture
-For accurate NLP inference, capturing a high signal-to-noise ratio is paramount. The system utilizes an **INMP441 MEMS Microphone** embedded securely within the chassis. Operating on the I2S (Inter-IC Sound) digital bus standard, the 24-bit sensor guarantees high-fidelity, high-dynamic-range sampling of spoken linguistic markers, preconditioning the data before it enters the translation pipeline.
+1. **Orientation**: Mount the OLED display face-up and render a high-contrast test pattern.
+2. **Coarse Sweep**: Position the candidate convex lens above the display surface from 10 mm to 50 mm.
+3. **Focus Criterion**: At a viewing distance of approximately **40 cm** above the lens, the critical distance $d^*$ at which characters appear maximally sharp corresponds to the focal length: $d^* = f_{\text{lens}} \pm \epsilon$.
 
 ---
 
-## 3. Hardware Specifications Matrix
+## 5. The Microphone and Acoustic Capture
+
+For accurate NLP inference, capturing a high signal-to-noise ratio is paramount. The system utilizes an **INMP441 MEMS Microphone** embedded securely within the chassis. Operating on the I2S (Inter-IC Sound) digital bus standard, the 24-bit sensor guarantees high-fidelity, high-dynamic-range sampling of spoken linguistic markers, preconditioning the data before it enters the translation pipeline.
+
+### 5.1 The Acoustic Porting Engineering Challenge
+Placing an omnidirectional microphone like the `INMP441` midway down the temple arm (near the ear) creates a severe drop in Sound Pressure Level (SPL) from the user's mouth, making it susceptible to ambient noise. 
+
+To overcome this without destroying the ordinary appearance of the glasses, **Acoustic Porting (Waveguides)** is employed. The microphone is positioned at the extreme front of the temple arm—directly at the **Front Hinge**. A micro-perforation is drilled precisely adjacent to the hinge, pointing forward and downward towards the mouth. This tiny structural tunnel acts as an acoustic funnel, optimizing vocal wave collection naturally while completely shielding the sensor from sight.
+
+---
+
+## 6. Wireless Telemetry System (Bluetooth)
+
+An innovative approach to communication protocols was required to minimize the latency between spoken word and optical rendering. Standard commercial Bluetooth implementations often introduce buffering delays unacceptable in real-time interfaces.
+
+<div align="center">
+  <img src="public/bluetooth_schematic.png" width="650px" style="border-radius: 10px; margin-bottom: 10px;" alt="Wireless telemetry schematic">
+  <br>
+  <i>Figure 7. 2D Architectural schematic demonstrating the strictly defined telemetry cycle and dual-channel wireless coupling.</i>
+</div>
+
+### 6.1 The Duplex Telemetry Cycle
+The established connection acts as an asymmetric duplex pathway:
+- **Uplink (Headset to Core)**: A continuous stream of lossless raw audio data is pumped via an optimized Bluetooth RFCOMM socket. The ESP32-C3 acts solely as a pass-through intermediary, bypassing any local audio filtering to reduce cycle overhead.
+- **Processing Window**: The Pi computes the data in predefined micro-batch intervals (e.g., 3-5 seconds acoustic windows).
+- **Downlink (Core to Headset)**: Reconstructed lightweight text vectors are transmitted back to the ESP32 via a synchronized interrupt routine. The ESP32 instantly translates these bytes into I2C commands, rendering the characters sequentially on the OLED display line by line.
+
+This rigorous cyclic approach ensures a deterministic state machine, yielding a robust, near-zero latency phenomenon highly akin to instantaneous organic recall.
+
+---
+
+## 7. Power Infrastructure & Battery
+
+A critical requirement for preserving the "natural" look of the headset was decoupling the massive energy requirements of AI computation from the eyewear. NOUR employs a **Dual Power Infrastructure**:
+
+1. **The Core Battery (Belt Unit):** A high-density **5000mAh** lithium-polymer pack sits inside the cigarette-box processing unit on the belt. This supplies the heavy continuous current required by the Raspberry Pi and the tensor calculations.
+2. **The Micro-Battery (Headset):** A miniature, ultra-lightweight **150mAh** battery is hidden in the opposite temple arm of the glasses. Because the headset only handles low-power tasks (Bluetooth transmission, MEMS Mic buffering, and OLED rendering), this minimal capacity is sufficient.
+
+This distributed and decoupled power delivery maximizes the operational lifespan to approximately **6 hours** of continuous active listening without placing a heavy, hot battery against the user's head.
+
+---
+
+## 8. Hardware Specifications Matrix
 
 To achieve the theoretical models discussed, the following components were utilized to construct the operational prototype:
 
@@ -177,52 +238,7 @@ To achieve the theoretical models discussed, the following components were utili
 | **INMP441 Audio Sensor** | MEMS, Omnidirectional, 61 dBA SNR | Captures acoustic environments and transforms analog pressure waves into serialized digital I2S inputs. |
 | **Monochrome OLED Panel** | 0.96 inch, 128x64 pixels, I2C Bus | Delivers the high-contrast photonic output necessary for viable reflection onto the half-mirror. |
 | **Optical Half-Mirror** | 50/50 Reflective/Transmissive | Superimposes the OLED photonic stream with ambient light photons. |
-| **Dual Power Infrastructure** | 5000mAh (Belt Unit) / 150mAh (Headset) | Ensures distributed and decoupled power delivery maximizing the operational lifespan to approximately 6 hours. |
-
----
-
-## 4. The Edge Processing Core (The Computing Unit)
-
-The crux of the NOUR architecture lies in its offloading mechanism. To preserve the ultra-lightweight form factor of the headset, complex tensor calculations are outsourced to an independent "Belt Unit" which houses the computational node.
-
-<div align="center">
-  <img src="public/belt_device.png" width="750px" style="border-radius: 10px; margin-bottom: 10px;" alt="Belt computation device">
-  <br>
-  <i>Figure 2. Cutaway render of the decentralized Edge Computing Belt Unit.</i>
-</div>
-
-### 4.1 Localized Knowledge Inference
-Inside this secure chassis resides the Raspberry Pi micro-computer. Upon booting, it loads a highly compressed, language-specific Whisper neural model into RAM. 
-When raw digital audio is ingested via Bluetooth, the following sequence triggers entirely offline:
-1. **Phonetic Recognition**: The neural network deciphers the Arabic audio morphology and converts it into a structural text string.
-2. **Deterministic Lookup**: The generated text is passed through a deterministic parsing layer, querying a massive local JSON database (containing encyclopedic or scriptural texts).
-3. **Response Assembly**: Upon a successful string match or heuristic approximation, a concise response packet is compiled for transmission.
-
-<div align="center">
-  <img src="public/software_pipeline.png" width="700px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Software NLP processing pipeline flowchart">
-  <br>
-  <i>Figure 2a. Sequential software architecture diagram depicting the analog-to-text inference node.</i>
-</div>
-
----
-
-## 5. Wireless Telemetry and Latency Reduction
-
-An innovative approach to communication protocols was required to minimize the latency between spoken word and optical rendering. Standard commercial Bluetooth implementations often introduce buffering delays unacceptable in real-time interfaces.
-
-<div align="center">
-  <img src="public/bluetooth_schematic.png" width="650px" style="border-radius: 10px; margin-bottom: 10px;" alt="Wireless telemetry schematic">
-  <br>
-  <i>Figure 3. 2D Architectural schematic demonstrating the strictly defined telemetry cycle and dual-channel wireless coupling.</i>
-</div>
-
-### 5.1 The Duplex Telemetry Cycle
-The established connection acts as an asymmetric duplex pathway:
-- **Uplink (Headset to Core)**: A continuous stream of lossless raw audio data is pumped via an optimized Bluetooth RFCOMM socket. The ESP32 acts solely as a pass-through intermediary, bypassing any local audio filtering to reduce cycle overhead.
-- **Processing Window**: The Pi computes the data in predefined micro-batch intervals (e.g., 3-5 seconds acoustic windows).
-- **Downlink (Core to Headset)**: Reconstructed lightweight text vectors are transmitted back to the ESP32 via a synchronized interrupt routine. The ESP32 instantly translates these bytes into I2C commands, rendering the characters sequentially on the OLED display line by line.
-
-This rigorous cyclic approach ensures a deterministic state machine, yielding a robust, near-zero latency phenomenon highly akin to instantaneous organic recall.
+| **Dual Power Infrastructure** | 5000mAh (Belt Unit) / 150mAh (Headset) | Ensures distributed and decoupled power delivery maximizing the operational lifespan. |
 
 ---
 
