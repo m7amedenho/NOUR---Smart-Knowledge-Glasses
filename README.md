@@ -32,7 +32,6 @@ Beyond being a prototype, NOUR is positioned as a practical assistive computing 
 A critical factor that differentiates **NOUR** from traditional augmented reality headsets is its absolute unobtrusiveness. The core engineering philosophy is that high-end AI assistance must be integrated without alienating the user socially or attracting unwanted attention. The entire hardware ecosystem is designed around maximum "stealth."
 
 <div align="center">
-  <img src="public/stealth_glasses_2d.png" width="750px" style="border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd;" alt="2D Front Schematic of Stealth Glasses">
   <br>
   <i>Figure 1. Orthographic front-profile 2D blueprint of the NOUR glasses. To an external observer, they appear identical to standard modern eyeglasses with zero bulk.</i>
 </div>
