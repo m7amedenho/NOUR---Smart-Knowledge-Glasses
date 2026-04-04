@@ -50,7 +50,118 @@ The fundamental optical problem—how to project a digital interface into the ey
   <i>Figure 1a. Strict 2D geometrical schematic representing the 45-degree optical reflection vector.</i>
 </div>
 
-### 2.2 Isochronous Acoustic Capture
+### 2.2 The Collimation Imperative — Why a Lens is Required
+
+A critical optical phenomenon must be addressed when projecting imagery from a micro-display at such close proximity to the human eye. The raw photonic output of the OLED panel consists of **diverging wavefronts** — light rays that spread outward from each pixel as a point source. When these uncollimated rays reach the cornea after reflection off the beamsplitter, the ciliary muscles of the eye must contract maximally to increase the refractive power of the crystalline lens. However, at object distances below approximately **10 cm**, the human accommodative system reaches its physiological limit and **cannot converge the diverging rays onto the retina**, resulting in an irrecoverable defocus blur.
+
+<div align="center">
+  <img src="public/lens_comparison.png" width="750px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Comparison of optical paths with and without collimating lens">
+  <br>
+  <i>Figure 1b. Comparative ray trace analysis: (A) Without collimating optics, diverging wavefronts exceed the accommodative range of the human eye. (B) With a properly positioned convex lens, collimated (parallel) rays enter the pupil, enabling relaxed-state focus at optical infinity.</i>
+</div>
+
+This phenomenon is governed by the **Thin Lens Equation**, one of the foundational relations of geometric optics:
+
+$$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$$
+
+Where:
+- $f$ = focal length of the collimating lens (meters)
+- $d_o$ = object distance (distance from OLED to the lens)
+- $d_i$ = image distance (distance from lens to the formed image)
+
+#### 2.2.1 The Collimation Condition
+
+To produce a virtual image at **optical infinity** — a prerequisite for relaxed ocular accommodation — we require $d_i \to \infty$. Substituting this boundary condition into the thin lens equation:
+
+$$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{\infty} = \frac{1}{d_o} + 0$$
+
+$$\boxed{d_o = f}$$
+
+This result establishes a fundamental design constraint: **the OLED display surface must be positioned at exactly the focal plane of the collimating lens**. When this condition is satisfied, every diverging cone of light emitted by a pixel is transformed into a parallel (collimated) beam, simulating an object at infinite distance.
+
+<div align="center">
+  <img src="public/collimation_optics.png" width="700px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Collimated beam optical path diagram">
+  <br>
+  <i>Figure 1c. Complete optical pipeline: OLED positioned at the focal plane emits diverging rays, the convex lens collimates them into parallel beams, the 45° beamsplitter redirects them toward the pupil, and the eye perceives a virtual image at infinity with zero accommodation effort.</i>
+</div>
+
+### 2.3 Accommodation Theory and the Near-Point Limitation
+
+The human visual system adjusts focus through a mechanism called **accommodation**, where the ciliary muscle modulates the curvature of the crystalline lens. The dioptric power of this system is defined as:
+
+$$D = \frac{1}{f_{\text{eye}}} \quad \text{(in diopters, where } f_{\text{eye}} \text{ is in meters)}$$
+
+For a healthy young adult, the total accommodative range is approximately **10–12 diopters**, corresponding to a **near point** ($d_{\text{np}}$) of roughly:
+
+$$d_{\text{np}} = \frac{1}{D_{\text{max}}} = \frac{1}{10} = 0.1 \text{ m} = 10 \text{ cm}$$
+
+When the OLED is positioned at a distance $d < d_{\text{np}}$ from the eye (typically 2–4 cm in a headset), the required accommodation exceeds the physiological ceiling:
+
+$$D_{\text{required}} = \frac{1}{d_{\text{OLED}}} = \frac{1}{0.03} \approx 33.3 \text{ diopters}$$
+
+This is approximately **3× the maximum** capacity of the human eye. The result is a guaranteed accommodation failure — the image appears as an irreparable blur regardless of the observer's visual acuity. This is the **root cause** of the three observed symptoms:
+
+| Symptom | Optical Cause | Resolution |
+| :------ | :------------ | :--------- |
+| Blurred/unreadable text | Wavefront divergence exceeds accommodative range | Collimating lens converts to parallel wavefront |
+| Eye strain and fatigue | Ciliary muscle sustained at maximum contracture | Relaxed accommodation at virtual infinity |
+| Inability to simultaneously see display and environment | Vergence-accommodation conflict (VAC) | Both display and scene perceived at comparable optical depth |
+
+### 2.4 Lens Selection and Optical Design Parameters
+
+The selection of the collimating lens involves balancing several interdependent parameters:
+
+#### 2.4.1 Required Focal Length
+
+Given the physical constraints of the eyewear frame, the OLED-to-lens distance is bounded by:
+
+$$15 \text{ mm} \leq f \leq 40 \text{ mm}$$
+
+For the **0.96-inch (24.4 mm diagonal) OLED panel** used in NOUR, a focal length of approximately **25–30 mm** provides an optimal balance between collimation quality and form-factor integration.
+
+#### 2.4.2 Angular Field of View
+
+The resulting angular field of view (FOV) subtended by the display is derived from:
+
+$$\theta_{\text{FOV}} = 2 \cdot \arctan\left(\frac{h}{2f}\right)$$
+
+Where $h$ is the display diagonal dimension. For our parameters:
+
+$$\theta_{\text{FOV}} = 2 \cdot \arctan\left(\frac{24.4}{2 \times 25}\right) = 2 \cdot \arctan(0.488) \approx 2 \times 26.0° = 52.0°$$
+
+This provides a comfortable field of view well within the central human visual field (~60° for comfortable viewing).
+
+#### 2.4.3 Magnification
+
+The effective angular magnification $M$ compared to viewing the bare OLED at the conventional near-point distance (250 mm) is:
+
+$$M = \frac{d_{\text{ref}}}{f} = \frac{250}{25} = 10\times$$
+
+This significant magnification factor means each pixel of the 128×64 OLED panel is expanded considerably, making character rendering and readability feasible despite the small physical display size.
+
+### 2.5 Experimental Focal Length Calibration Protocol
+
+To empirically determine the optimal OLED-to-lens separation for a given lens specimen, the following calibration protocol was devised:
+
+<div align="center">
+  <img src="public/focal_length_calibration.png" width="650px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 10px;" alt="Focal length calibration procedure">
+  <br>
+  <i>Figure 1d. Three-step empirical calibration methodology for determining optimal lens placement distance.</i>
+</div>
+
+**Procedure:**
+
+1. **Orientation**: Mount the OLED display face-up (emitting toward the ceiling) and render a high-contrast test pattern (e.g., sharp text characters, crosshair grid).
+2. **Coarse Sweep**: Position the candidate convex lens above the display surface and gradually increase the separation distance from 10 mm to 50 mm.
+3. **Focus Criterion**: At a viewing distance of approximately **40 cm** above the lens, observe the projected characters. The critical distance $d^*$ at which the characters appear maximally sharp corresponds to the focal length:
+
+$$d^* = f_{\text{lens}} \pm \epsilon$$
+
+Where $\epsilon$ represents the depth-of-focus tolerance (typically $\pm$ 1–2 mm for lenses in this focal range). Once $d^*$ is identified, the lens is permanently fixed at this separation within the frame assembly.
+
+> **Note:** For lenses with marked focal lengths, the experimental verification remains essential, as manufacturing tolerances in low-cost optical elements can introduce deviations of up to $\pm 10\%$ from the specified value.
+
+### 2.6 Isochronous Acoustic Capture
 For accurate NLP inference, capturing a high signal-to-noise ratio is paramount. The system utilizes an **INMP441 MEMS Microphone** embedded securely within the chassis. Operating on the I2S (Inter-IC Sound) digital bus standard, the 24-bit sensor guarantees high-fidelity, high-dynamic-range sampling of spoken linguistic markers, preconditioning the data before it enters the translation pipeline.
 
 ---
