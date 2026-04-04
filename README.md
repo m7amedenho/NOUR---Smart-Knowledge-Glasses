@@ -42,7 +42,6 @@ Developing an ultra-lightweight headset was critical for achieving widespread us
 By offloading all processing to the belt, the glasses possess **no heaviness, no bulk, and no oversized visors**. The frame utilizes standard, sleek titanium which ensures the glasses sit perfectly and comfortably on the face, exactly like normal reading glasses. 
 
 <div align="center">
-  <img src="public/glasses_side_profile_2d.png" width="750px" style="border-radius: 10px; margin-top: 15px; margin-bottom: 15px; border: 1px solid #ddd;" alt="2D Side Schematic of Stealth Glasses">
   <br>
   <i>Figure 2. Detailed side-profile wireframe indicating the precise placement of the hidden microphone array and Bluetooth module within the sleek temple arm.</i>
 </div>
