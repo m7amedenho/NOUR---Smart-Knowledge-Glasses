@@ -68,12 +68,6 @@ The crux of the NOUR architecture lies in its offloading mechanism. To preserve 
   <i>Figure 3. 2D Engineering diagram of the Edge Computing Belt Unit. Designed strictly to the dimensions of a cigarette box, it clips covertly to the user's belt.</i>
 </div>
 
-<div align="center">
-  <img src="public/belt_device.png" width="750px" style="border-radius: 10px; margin-bottom: 10px;" alt="Belt computation device">
-  <br>
-  <i>Figure 4. Cutaway 3D architectural render of the decentralized Edge Computing Belt Unit.</i>
-</div>
-
 ### 3.2 Localized Knowledge Inference
 Inside this secure chassis resides the Raspberry Pi micro-computer. Upon booting, it loads a highly compressed, language-specific Whisper neural model into RAM. 
 When raw digital audio is ingested via Bluetooth, the following sequence triggers entirely offline:
