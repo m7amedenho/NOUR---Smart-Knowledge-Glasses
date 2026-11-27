@@ -233,16 +233,4 @@ To achieve the theoretical models discussed, the following components were utili
 | **Optical Half-Mirror** | 50/50 Reflective/Transmissive | Superimposes the OLED photonic stream with ambient light photons. |
 | **Dual Power Infrastructure** | 5000mAh (Belt Unit) / 150mAh (Headset) | Ensures distributed and decoupled power delivery maximizing the operational lifespan. |
 
----
 
-<br>
-<br>
-
-<div align="center">
-  <h3>The Practical Catalyst</h3>
-
-  <p><b>وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</b></p>
-  <i>"بس انا بعملها عشان اغش فى امتحان القرآن"</i><br>
-  طالب ازهري والحالة صعبة
-
-</div>
